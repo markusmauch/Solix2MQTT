@@ -5,6 +5,8 @@
     "rootDir": "src",
     "outDir": "./bin",
     "isolatedModules": true,
+    "inlineSources": true,
+    "inlineSourceMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
