@@ -41,6 +41,9 @@ docker run -d \
   tomquist/solix2mqtt:latest
 ```
 
+### Development
+This repository contains a devcontainer with all the tools set up for development and debugging.
+
 ## Configuration
 The app can be configured using the following environment variables:
 
@@ -70,4 +73,5 @@ This project is the result of some work I did to integrate my Solix into my home
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgements
+- [solix2mqtt](https://github.com/tomquist/solix2mqtt)
 - [eufy-security-client](https://github.com/bropat/eufy-security-client)
