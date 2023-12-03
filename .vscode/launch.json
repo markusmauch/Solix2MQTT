@@ -8,6 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Programm starten",
+            "preLaunchTask": "Create .env",
             "skipFiles": [
                 "node_modules/**"
             ],

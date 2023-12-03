@@ -1,4 +1,4 @@
-import { LoginResultResponse, SolixApi } from "./api";
+import { ApiWithLogin, LoginResultResponse, ParamData, ParamType, SolixApi } from "./api";
 import { anonymizeConfig, getConfig } from "./config";
 import { consoleLogger } from "./logger";
 import { sleep } from "./utils";
@@ -44,9 +44,44 @@ async function run(): Promise<void> {
       let topic = `${config.mqttTopic}/site_homepage`;
       await publisher.publish(topic, siteHomepage.data);
       for (const site of siteHomepage.data?.site_list ?? []) {
+        // scen info
         const scenInfo = await loggedInApi.scenInfo(site.site_id);
         topic = `${config.mqttTopic}/site/${site.site_name}/scenInfo`;
         await publisher.publish(topic, scenInfo.data);
+        // schedule
+        const deviceParams = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: ParamType.LoadConfiguration,
+        }) ;
+        const schedule = deviceParams.data.param_data;
+        topic = `${config.mqttTopic}/site/${site.site_name}/schedule`;
+        await publisher.publish(topic, schedule);
+
+        const test = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: "3" as any,
+        }) ;
+
+        const test2 = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: "2" as any,
+        }) ;
+
+        const test1 = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: "1" as any,
+        }) ;
+
+        const test5 = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: "6" as any,
+        }) ;
+
+        const test6 = await loggedInApi.getSiteDeviceParam( {
+          siteId: site.site_id,
+          paramType: "6" as any,
+        }) ;
+        var x = 0;
       }
       logger.log("Published.");
     } else {

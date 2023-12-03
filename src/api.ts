@@ -94,7 +94,7 @@ export interface DeviceDataResponse {
   data: DeviceData[];
 }
 
-interface SiteHomepageResponse {
+export interface SiteHomepageResponse {
   site_list: Site[],
   solar_list: any[],
   pps_list: any[],
@@ -290,6 +290,8 @@ export type ParamData<T extends ParamType> = T extends ParamType.LoadConfigurati
 export interface SiteDeviceParamResponse<T extends ParamType> {
   param_data: ParamData<T>
 }
+
+export type ApiWithLogin = ReturnType<typeof SolixApi.prototype.withLogin>;
 
 export class SolixApi {
   private readonly SERVER_PUBLIC_KEY = "04c5c00c4f8d1197cc7c3167c52bf7acb054d722f0ef08dcd7e0883236e0d72a3868d9750cb47fa4619248f3d83f0f662671dadc6e2d31c2f41db0161651c7c076";
